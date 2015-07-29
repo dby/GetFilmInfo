@@ -169,15 +169,56 @@ note:
 
 
 ###某一电影的短评  
-请求url: 
-请求参数:
-返回数据格式:
-返回参数:
-示例URL:
+**请求url**: http://myfilms.sinaapp.com/essay/
+**请求参数**: 
+```python
+    参数名称        类型        示例值            描述
+    id              String      25723907          电影ID，唯一
+    start           String      0                 从第几个开始获取
+    limit           String      20                每次获取多少
+    sort            String      new_score/time    热门/最新
+```
+**返回数据格式**: JSON
+**返回参数**:  
+```python
+    参数名称        类型        示例值                                              描述
+    author_img      String      http://img3.douban.com/icon/u1387717-143.jpg        短评作者头像
+    author_name     String      张三                                                短评作者名字
+    essay_time      String      2015-07-16                                          写短评的时间
+    essay_content   String      这部电影还不错                                      短评的内容
+    essay_vote      String      1686                                                投票数目
+```
+**示例URL**: http://myfilms.sinaapp.com/essay/?id=25723907&start=0&limit=20&sort=time   
+
+
+---
+
 
 ###某一电影的影评  
-请求url: 
-请求参数:
-返回数据格式:
-返回参数:
-示例URL:
+**请求url**: http://myfilms.sinaapp.com/review/   
+**请求参数**: 
+```python
+    参数名称        类型        示例值            描述
+    id              String      25723907          电影ID，唯一
+    start           String      0                 从第几个开始获取
+    limit           String      20                每次获取多少
+    sort            String      ""/time           热门/最新
+    score           String      1/2/3/4/5/""      影评评分，1星/2星/3星/4星/5星/全部
+
+```
+**返回数据格式**: JSON  
+**返回参数**:  
+```python
+    参数名称        类型        示例值                                              描述
+    author_img      String      http://img3.douban.com/icon/u53268990-12.jpg        影评作者头像
+    author_name     String      张三                                                影评作者名字
+    review_content  String      这部电影还不错哦...                                 影评内容
+    review_title    String      说句实话，我看到得都是心酸                          影评题目
+    time            String      未完成
+```
+**示例URL**: http://myfilms.sinaapp.com/review/?id=25723907&limit=5&start=0&score=  
+
+
+---
+
+

@@ -171,9 +171,10 @@ class FilmSpider:
             
             return onReviews
 
-    def getFilmDetailMsg(self, url):
+    def getFilmDetailMsg(self, id):
         '''获得电影的详细信息'''
         detailMsg = {}
+        url = "http://movie.douban.com/subject/" + str(id) + "/?from=showing"
         r = requests.get(url)
         if r.status_code == requests.codes.ok:
             doc = html.document_fromstring(r.text)
@@ -274,11 +275,12 @@ class FilmSpider:
             detailMsg["intro"] = intro.text.strip()
 
 #剧照
-            detailMsg["covers"] = self.getFilmPhotos(25723907)
+            detailMsg["covers"] = self.getFilmPhotos(id)
             return detailMsg
 
     def getFilmPhotos(self, id):
         '''获得电影剧照'''
+        '''id--电影ID，唯一的'''
         photos = []
         url = "http://movie.douban.com/subject/" + str(id) +"/all_photos"
         r = requests.get(url)
@@ -317,14 +319,16 @@ class FilmSpider:
             return essay
 
     def getReviews(self, id, score, start, limit, sort):
+        '''获得某一电影的影评'''
+        '''id--电影ID score--几星影评 start--从第几个开始爬取 limit--爬取的个数 sort--排列方式'''
         reviews = []
         url = "http://movie.douban.com/subject/" +str(id) + "/reviews?sort=" + str(sort) + "&filter=&score=" + str(score) + "&limit=" + str(limit)
         r = requests.get(url)
         if r.status_code == requests.codes.ok:
-            review = {}
             doc = html.document_fromstring(r.text)
             divs = doc.xpath('//div[@class="review"]')
             for div in divs:
+                review = {}
                 aInfo = div.xpath('.//div[@class="review-hd"]')[0].xpath('.//a')
 #作者名
                 review["author_name"] = aInfo[0].attrib["title"]
@@ -333,11 +337,12 @@ class FilmSpider:
 #影评内容
                 detail_url = div.xpath('.//div[@class="review-hd-expand"]')[0].xpath('.//a')[0].attrib["href"]
                 review["review_content"] = self.getDetailReview(detail_url)
-
+#影评标题
+                title = div.xpath('.//div[@class="review-hd"]')[0].xpath('.//a')[3].attrib["title"]
+                review["review_title"] = title
 #时间 未完成
                 pat = re.compile('''\<a href\=\"http\:\/\/movie\.douban\.com\/people\/35986570\/\" class\>[^\<]+\<span''')
                 res = pat.findall(r.content)
-                print len(res)
                 #res = res[res.find("</span>")+7 : len(res)-3]
                 #detailMsg["anothername"] = res
                 reviews.append(review)
@@ -361,13 +366,13 @@ if __name__ == '__main__':
 
     #FilmSpider().getOnShowFilms()
     #FilmSpider().getSpecifiedFilms("热门", "time", 20, 0)
-    print FilmSpider().getSpecifiedTVs(7)
+    #print FilmSpider().getSpecifiedTVs(7)
     #FilmSpider().getRankingList()
     #FilmSpider().getBestReview(0)
     #FilmSpider().getFilmDetailMsg("http://movie.douban.com/subject/25895276/?from=showing")
     #FilmSpider().getFilmPhotos(25723907)
     #FilmSpider().getEssay(25723907, 0, 20, "new_score")
-    #FilmSpider().getReviews(25723907, 5, 0, 20, "")
+    FilmSpider().getReviews(25723907, 5, 0, 20, "")
     #FilmSpider().getDetailReview("http://movie.douban.com/review/7521054/")
 
 

@@ -56,15 +56,28 @@ def Review():
 
 @app.route("/film/")
 def FilmDetailMsg():
-    film = FilmSpider().getFilmDetailMsg("http://movie.douban.com/subject/25723907/?from=showing")
-    return jsonify(film=film)
+    if request.method == "GET":
+        id = request.args.get("id")
+        film = FilmSpider().getFilmDetailMsg(id)
+        return jsonify(film=film)
 
 @app.route("/essay/")
 def getEssay():
-    essay = FilmSpider().getEssay(25723907, 0, 20, "new_score")
-    return jsonify(essay=essay)
+    if request.method == "GET":
+        id = request.args.get("id")
+        start = request.args.get("start")
+        limit = request.args.get("limit")
+        sort = request.args.get("sort")
+        essay = FilmSpider().getEssay(id, start, limit, sort)
+        return jsonify(essay=essay)
 
 @app.route("/review/")
 def getReviews():
-    essay = FilmSpider().getReviews(25723907, 5, 0, 10, "")
-    return jsonify(essay=essay)
+    if request.method == "GET":
+        id = request.args.get("id")
+        start = request.args.get("start")
+        limit = request.args.get("limit")
+        sort = request.args.get("sort")
+        score = request.args.get("score")
+        reviews = FilmSpider().getReviews(id, score, start, limit, sort)
+        return jsonify(reviews=reviews)

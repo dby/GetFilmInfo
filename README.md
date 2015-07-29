@@ -131,11 +131,42 @@ note:
 
 
 ###某一电影具体信息   
-请求url: 
-请求参数:
-返回数据格式:
-返回参数:
-示例URL:
+**请求url**: http://myfilms.sinaapp.com/film/   
+**请求参数**: 
+```python
+    参数名称      类型        示例值          描述
+    id            String      24879839        电影id,为唯一的
+```
+**返回数据格式**: JSON  
+**返回参数**:  
+```python
+    参数名称        类型        示例值                                                                          描述
+    director        String      许诚毅                                                                          导演
+    film_writer     String      袁锦麟                                                                          编剧
+    actors          String      白百合/井柏然/姜武/金燕玲/钟汉良                                                演员
+    type            String      喜剧/奇幻/古装                                                                  电影类型
+    region          String      中国大陆                                                                        地区
+    language        String      汉语普通话                                                                      语言
+    release         String      2015-07-16(中国大陆)                                                            上映日期
+    duration        String      118分钟                                                                         电影放映时长
+    anothername     String      聊斋之宅妖 / 聊斋之捉妖记 / Monster Hunt                                        又名
+    votes_num       String      42843                                                                           投票人数
+    cover           String      http://img3.douban.com/view/movie_poster_cover/spst/public/p2251450614.jpg      电影海报
+    covers          Array       [...]                                                                           电影所有的海报剧照
+    cover_link      String      http://movie.douban.com/subject/24879839/photos?type=R                          所有海报的链接
+    intro           String      山雄伟，海辽阔，经奇幻...                                                       剧情简介
+    fiverstar       String      未完成
+    fourstar        String      未完成
+    threestar       String      未完成
+    twostar         String      未完成
+    onestar         String      未完成
+```
+
+**示例URL**: http://myfilms.sinaapp.com/film/?id=24879839  
+
+
+---
+
 
 ###某一电影的短评  
 请求url: 

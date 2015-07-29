@@ -28,7 +28,9 @@
     ticket       String      http://movie.douban.com/subject/25723907/cinema/                                ""
     trailer      String      http://movie.douban.com/subject/25723907/trailer                                电影海报
 ```
+
 ---
+
 
 ###选电影  
 请求url: http://myfilms.sinaapp.com/choosefilms/  
@@ -56,6 +58,7 @@ note:
     url/cover链接需要转化一下  
     tag取值: 热门/最新/经典/可播放/豆瓣高分/冷门佳片/华语/欧美/韩国/日本/动作/喜剧/爱情/科幻/悬疑/恐怖/治愈/  
 
+
 ---
 
 
@@ -77,22 +80,55 @@ note:
 ```
 示例url: http://myfilms.sinaapp.com/choosetvs/?type=1                                                        
                                                                                                            
+
 ---
 
+
 ###排行榜  
-请求url: 
-请求参数:
-返回数据格式:
-返回参数:
-示例URL:
+请求url: http://myfilms.sinaapp.com/rankinglist/   
+请求参数: 无
+返回数据格式: JSON
+返回参数:  
+```python
+    参数名称    类型        示例值                                                                          描述
+    rate        String      7.9                                                                             评分
+    href        String      http://img3.douban.com/view/movie_poster_cover/ipst/public/p2205014862.jpg      电影海报
+    detail      String      2015-01-31(日本)...                                                             电影简介
+    title       String      深夜食堂                                                                        电影名称
+
+```
+示例URL: http://myfilms.sinaapp.com/rankinglist/   
 
 
-###最受欢迎得影评  
-请求url: 
-请求参数:
-返回数据格式:
+---
+
+
+###最受欢迎/最近的影评  
+请求url: http://myfilms.sinaapp.com/bestreview/  
+请求参数:  
+```python
+    参数名称    类型        示例值                  描述
+    page        String      0/1/2                   页数
+    type        String      best/latest             最受欢迎的/最新的
+```
+返回数据格式: JSON  
 返回参数:
-示例URL:
+```python
+    参数名称                类型        示例值                                                                          描述
+    film_href               String      http://movie.douban.com/subject/24879839/                                       电影链接
+    film_title              String      道士下山                                                                        电影名称
+    film_cover              String      http://img3.douban.com/view/movie_poster_cover/ipst/public/p2251450614.jpg      电影海报url
+    review_href             String      http://movie.douban.com/review/7551733/                                         影评地址
+    review_short            String      ...                                                                             简短影评(不全)
+    review_title            String      请勿向西湖投掷垃圾                                                              影评名称
+    review_author_profile   String      http://movie.douban.com/people/petitespot/                                      影评作者主页
+    review_author_name      String      小斑                                                                            影评作者名称
+```
+示例URL: http://myfilms.sinaapp.com/bestreview/?type=best&page=0   
+
+
+---
+
 
 ###某一电影具体信息   
 请求url: 

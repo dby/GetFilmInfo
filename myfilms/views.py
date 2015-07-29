@@ -33,8 +33,6 @@ def ChooseFilms():
         page_start = request.args.get("page_start")
         films = FilmSpider().getSpecifiedFilms(tag, sort, page_limit, page_start)
         return jsonify(onshowingfilms=films)
-    else:
-        return ""
 
 @app.route("/choosetvs/")
 def ChooseTVs():
@@ -50,9 +48,11 @@ def RankingList():
 
 @app.route("/bestreview/")
 def Review():
-    page = 0
-    reviews = FilmSpider().getBestReview(page)
-    return jsonify(review=reviews)
+    if request.method == "GET":
+        page = request.args.get("page")
+        type = request.args.get("type")
+        reviews = FilmSpider().getBestReview(page, type)
+        return jsonify(review=reviews)
 
 @app.route("/film/")
 def FilmDetailMsg():

@@ -18,7 +18,7 @@ class FilmSpider:
     choseMovieUrl = "http://movie.douban.com/j/search_subjects?type=movie" 
     choseTVUrl = "http://movie.douban.com/tv/"
     rankingListUrl = "http://movie.douban.com/chart"
-    bestUrl = "http://movie.douban.com/review/best/"
+    bestUrl = "http://movie.douban.com/review/"
 
     user_agents = [
         'Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11',
@@ -76,7 +76,7 @@ class FilmSpider:
         global false, true
 # 设置代理
         headers = {'User-Agenr': random.choice(self.user_agents)}
-        url = self.choseMovieUrl + "&tag=" + str(tag) + "&sort=" + str(sort) + "&page_limit=" + str(page_limit) + "&page_start=" + str(page_start)
+        url = self.choseMovieUrl + "&tag=" + (tag) + "&sort=" + (sort) + "&page_limit=" + str(page_limit) + "&page_start=" + str(page_start)
         r = requests.get(url)
         if r.status_code == requests.codes.ok:
             s = eval(r.text)
@@ -92,10 +92,10 @@ class FilmSpider:
         url = self.choseTVUrl + "?type=" + str(type)
         r = requests.get(url)
         if r.status_code == requests.codes.ok:
-            film = {}
             doc = html.document_fromstring(r.text)
             trs = doc.xpath('//tr[@class="item"]')
             for tr in trs:
+                film = {}
                 a1 = tr.xpath('.//a[@class="nbg"]')[0]
 # href--链接，，title--电影名称，，cover--电影海报，，detail--电影简介
                 film["href"] = a1.xpath("@href")[0]
@@ -142,15 +142,15 @@ class FilmSpider:
 # review_title--影评标题 review_href--影评链接 film_href--电影链接 film_title--电影标题
 # film_cover--电影海报 review_author_name--影评作者 review_author_profile--影评作者界面
 # review_short--影评简述
-    def getBestReview(self, page):
+    def getBestReview(self, page, type):
         onReviews = []
-        url = self.bestUrl + "?start=" + str(page*10)
+        url = self.bestUrl + type  + "/?start=" + str(page*10)
         r = requests.get(url)
         if r.status_code == requests.codes.ok:
-            review = {}
             doc = html.document_fromstring(r.text)
             uls = doc.xpath('//ul[@class="tlst clearfix"]')
             for ul in uls:
+                review = {}
                 a1 = ul.xpath('.//li[@class="nlst"]')[0].xpath('.//a')[2]
                 review["review_title"] = a1.xpath('@title')[0]
                 review["review_href"] = a1.xpath('@href')[0]
@@ -356,18 +356,18 @@ class FilmSpider:
 
 if __name__ == '__main__':
 
-    reload(sys)
-    sys.setdefaultencoding("utf-8")
+    #reload(sys)
+    #sys.setdefaultencoding("utf-8")
 
     #FilmSpider().getOnShowFilms()
     #FilmSpider().getSpecifiedFilms("热门", "time", 20, 0)
-    #FilmSpider().getSpecifiedTV(7)
+    print FilmSpider().getSpecifiedTVs(7)
     #FilmSpider().getRankingList()
     #FilmSpider().getBestReview(0)
     #FilmSpider().getFilmDetailMsg("http://movie.douban.com/subject/25895276/?from=showing")
     #FilmSpider().getFilmPhotos(25723907)
     #FilmSpider().getEssay(25723907, 0, 20, "new_score")
-    FilmSpider().getReviews(25723907, 5, 0, 20, "")
+    #FilmSpider().getReviews(25723907, 5, 0, 20, "")
     #FilmSpider().getDetailReview("http://movie.douban.com/review/7521054/")
 
 

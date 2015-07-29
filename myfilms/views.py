@@ -38,8 +38,10 @@ def ChooseFilms():
 
 @app.route("/choosetvs/")
 def ChooseTVs():
-    tvs = FilmSpider().getSpecifiedTVs(1)
-    return jsonify(onshowingtvs=tvs)
+    if request.method == 'GET':
+        type = request.args.get("type")
+        tvs = FilmSpider().getSpecifiedTVs(type)
+        return jsonify(onshowingtvs=tvs)
 
 @app.route("/rankinglist/")
 def RankingList():

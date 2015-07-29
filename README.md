@@ -9,8 +9,9 @@
 ## API
 1. 正在上映的电影  
 请求url: http://myfilms.sinaapp.com/onshowingfilms/
-请求参数: 无  
+请求参数: 无    
 返回参数:   
+```python
     参数名称            类型        示例值                                                                          描述
     star                String      "00"                                                                            "星"
     title               String      "捉妖记"                                                                        "电影标题"
@@ -25,3 +26,4 @@
     release             String      "2015"                                                                          "上映时间"
     ticket              String      "http://movie.douban.com/subject/25723907/cinema/"                              ""
     trailer             String      "http://movie.douban.com/subject/25723907/trailer"                              "电影海报"
+```

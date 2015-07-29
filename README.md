@@ -7,7 +7,7 @@
 4. 影评(最受欢迎的影评)  
 
 ## API
-1. 正在上映的电影  
+###正在上映的电影  
 请求url: http://myfilms.sinaapp.com/onshowingfilms/
 请求参数: 无    
 返回数据类型: JSON
@@ -28,9 +28,9 @@
     ticket       String      http://movie.douban.com/subject/25723907/cinema/                                ""
     trailer      String      http://movie.douban.com/subject/25723907/trailer                                电影海报
 ```
+---
 
-
-2. 选电影  
+###选电影  
 请求url: http://myfilms.sinaapp.com/choosefilms/  
 请求参数:   
 ```python
@@ -56,7 +56,10 @@ note:
     url/cover链接需要转化一下  
     tag取值: 热门/最新/经典/可播放/豆瓣高分/冷门佳片/华语/欧美/韩国/日本/动作/喜剧/爱情/科幻/悬疑/恐怖/治愈/  
 
-3. 电视剧  
+---
+
+
+###电视剧  
 请求url: http://myfilms.sinaapp.com/choosetvs/
 请求参数:   
 ```python
@@ -69,20 +72,45 @@ note:
     参数名称    类型        示例值                                                                          描述
     href        String      http://movie.douban.com/subject/25826612/                                       电视剧详细信息url
     cover       String      http://img3.douban.com/view/movie_poster_cover/ipst/public/p2230256732.jpg      电视剧海报url
-    detail      String      2015-04-12(美国) / 艾米莉亚·克拉克 / 彼特·丁拉基 ...                          电视剧详细信息
+    detail      String      2015-04-12(美国) / 艾米莉亚·克拉克 / 彼特·丁拉                                电视剧详细信息
     title       String      冰与火之歌：权力的游戏 第五季 / 王座游戏 第五季                                 电视剧名称
 ```
-示例url: http://myfilms.sinaapp.com/choosetvs/?type=1  
+示例url: http://myfilms.sinaapp.com/choosetvs/?type=1                                                        
+                                                                                                           
+---
 
-4. 排行榜  
+###排行榜  
 请求url: 
+请求参数:
+返回数据格式:
+返回参数:
+示例URL:
 
 
-5. 最受欢迎得影评  
+###最受欢迎得影评  
+请求url: 
+请求参数:
+返回数据格式:
+返回参数:
+示例URL:
 
+###某一电影具体信息   
+请求url: 
+请求参数:
+返回数据格式:
+返回参数:
+示例URL:
 
-6. 某一电影具体信息   
+###某一电影的短评  
+请求url: 
+请求参数:
+返回数据格式:
+返回参数:
+示例URL:
 
-7. 某一电影的短评  
-
-8. 某一电影的影评  
+###某一电影的影评  
+请求url: 
+请求参数:
+返回数据格式:
+返回参数:
+示例URL:

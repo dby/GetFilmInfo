@@ -1,10 +1,10 @@
 ## film
 
 已经部署到新浪云平台sae上，目前已经实现的功能有:  
-1. 选电影
-2. 电视剧(电视剧排行榜)
-3. 排行榜(电影排行榜)
-4. 影评(最受欢迎的影评)
+1. 选电影  
+2. 电视剧(电视剧排行榜)  
+3. 排行榜(电影排行榜)   
+4. 影评(最受欢迎的影评)  
 
 ## API
 1. 正在上映的电影  
@@ -51,5 +51,17 @@
     cover               String      http://img4.douban.com/view/movie_poster_cover/lpst/public/p2256870906.jpg      电影海报url
     id                  String      25905746                                                                        区分不同电影，唯一
 ```
-示例: http://myfilms.sinaapp.com/choosefilms/?tag=热门&sort=recommend&page_limit=20&page_start=0    
+示例: http://myfilms.sinaapp.com/choosefilms/?tag="热门"&sort=recommend&page_limit=20&page_start=0    
 note: url/cover链接需要转化一下
+
+3. 排行榜  
+
+
+4. 最受欢迎得影评  
+
+
+5. 某一电影具体信息   
+
+6. 某一电影的短评  
+
+7. 某一电影的影评  

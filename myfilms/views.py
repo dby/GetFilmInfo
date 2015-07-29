@@ -26,8 +26,15 @@ def OnShowingFilms():
 
 @app.route("/choosefilms/")
 def ChooseFilms():
-    films = FilmSpider().getSpecifiedFilms("热门", "time", 20, 0)
-    return jsonify(onshowingfilms=films)
+    if request.method == 'GET':
+        tag = request.args.get("tag")
+        sort = request.args.get("sort")
+        page_limit = request.args.get("page_limit")
+        page_start = request.args.get("page_start")
+        films = FilmSpider().getSpecifiedFilms(tag, sort, page_limit, page_start)
+        return jsonify(onshowingfilms=films)
+    else:
+        return ""
 
 @app.route("/choosetvs/")
 def ChooseTVs():

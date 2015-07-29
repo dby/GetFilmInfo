@@ -34,11 +34,11 @@
 请求url: http://myfilms.sinaapp.com/choosefilms/  
 请求参数:   
 ```python
-    参数名称            类型        示例值                                                                          描述
-    tag                 String      热门/最新/经典...                                                               选择电影的类型
-    sort                String      recommend/time/rank                                                             排序类型 热度/时间/评价
-    page_limit          Integer     20                                                                              每次爬取的数目
-    page_start          Integer     0                                                                               从第几项开始爬
+    参数名称            类型        示例值                                      描述
+    tag                 String      热门/最新/经典...                           选择电影的类型
+    sort                String      recommend/time/rank                         排序类型 热度/时间/评价
+    page_limit          Integer     20                                          每次爬取的数目
+    page_start          Integer     0                                           从第几项开始爬
 ```
 返回数据类型: JSON
 返回参数:
@@ -51,5 +51,5 @@
     cover               String      http://img4.douban.com/view/movie_poster_cover/lpst/public/p2256870906.jpg      电影海报url
     id                  String      25905746                                                                        区分不同电影，唯一
 ```
-示例:http://movie.douban.com/explore#!type=movie&tag=热门&sort=recommend&page_limit=20&page_start=0 
+示例: http://myfilms.sinaapp.com/choosefilms/?tag=热门&sort=recommend&page_limit=20&page_start=0    
 note: url/cover链接需要转化一下

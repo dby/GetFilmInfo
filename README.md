@@ -63,7 +63,7 @@
 
 
 ###电视剧  
-**请求url**: http://myfilms.sinaapp.com/choosetvs/
+**请求url**: http://myfilms.sinaapp.com/choosetvs/  
 **请求参数**:   
 ```python
     参数名称            类型        示例值                            描述
@@ -86,9 +86,9 @@
 
 ###排行榜  
 **请求url**: http://myfilms.sinaapp.com/rankinglist/   
-**请求参数**: 无
-**返回数据格式**: JSON
-**返回参数**:  
+**请求参数**: 无  
+**返回数据格式**: JSON  
+**返回参数**:   
 ```python
     参数名称    类型        示例值                                                                          描述
     rate        String      7.9                                                                             评分
@@ -169,7 +169,7 @@
 
 
 ###某一电影的短评  
-**请求url**: http://myfilms.sinaapp.com/essay/
+**请求url**: http://myfilms.sinaapp.com/essay/   
 **请求参数**: 
 ```python
     参数名称        类型        示例值            描述
@@ -178,7 +178,7 @@
     limit           String      20                每次获取多少
     sort            String      new_score/time    热门/最新
 ```
-**返回数据格式**: JSON
+**返回数据格式**: JSON   
 **返回参数**:  
 ```python
     参数名称        类型        示例值                                              描述

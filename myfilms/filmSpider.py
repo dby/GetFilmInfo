@@ -63,6 +63,7 @@ class FilmSpider:
             film["cover"] = a.xpath('@src')[0]
             onShowFilms.append(film)
         
+        print onShowFilms
         return onShowFilms
 
     '''
@@ -75,7 +76,7 @@ class FilmSpider:
         true="True"
         global false, true
 # 设置代理
-        headers = {'User-Agenr': random.choice(self.user_agents)}
+        headers = {'User-Agent': random.choice(self.user_agents)}
         url = self.choseMovieUrl + "&tag=" + (tag) + "&sort=" + (sort) + "&page_limit=" + str(page_limit) + "&page_start=" + str(page_start)
         r = requests.get(url)
         if r.status_code == requests.codes.ok:
@@ -358,11 +359,21 @@ class FilmSpider:
         else:
             return ""
 
+    def getRealTimeTickets(self):
+        url = "http://www.cbooo.cn/realtime"
+        headers = {'User-Agent': random.choice(self.user_agents)}
+        r = requests.get(url, headers = headers)
+        if r.status_code == requests.codes.ok:
+            print r.text
+            doc = html.document_fromstring(r.text)
+            tds = doc.xpath('//td[@class="one"]')
+            print len(tds)
+
 
 if __name__ == '__main__':
 
-    #reload(sys)
-    #sys.setdefaultencoding("utf-8")
+    reload(sys)
+    sys.setdefaultencoding("utf-8")
 
     #FilmSpider().getOnShowFilms()
     #FilmSpider().getSpecifiedFilms("热门", "time", 20, 0)
@@ -372,7 +383,9 @@ if __name__ == '__main__':
     #FilmSpider().getFilmDetailMsg("http://movie.douban.com/subject/25895276/?from=showing")
     #FilmSpider().getFilmPhotos(25723907)
     #FilmSpider().getEssay(25723907, 0, 20, "new_score")
-    FilmSpider().getReviews(25723907, 5, 0, 20, "")
+    #FilmSpider().getReviews(25723907, 5, 0, 20, "")
     #FilmSpider().getDetailReview("http://movie.douban.com/review/7521054/")
+
+    FilmSpider().getRealTimeTickets()
 
 

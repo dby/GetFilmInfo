@@ -11,6 +11,11 @@ from sae.const import (MYSQL_HOST, MYSQL_HOST_S, MYSQL_PORT, MYSQL_USER, MYSQL_P
 from filmSpider import *
 from filmSpiderCbooo import *
 
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+
 filmType = ["热门", "最新", "经典", "可播放", "豆瓣高分", "冷门佳片", "华语", "欧美", "韩国", "日本", "动作", "喜剧", "爱情", "科幻", "悬疑", "恐怖", "文艺"]
 filmSort = ["recommend", "time", "rank"] #热度，时间，评价
 
@@ -97,8 +102,9 @@ def RankingList():
 def Review():
     if request.method == "GET":
         page = request.args.get("page")
-        type = request.args.get("type")
-        reviews = FilmSpider().getBestReview(page, type)
+        #_type = request.args.get("type")
+        _type = "best"
+        reviews = FilmSpider().getBestReview(page, _type)
         return jsonify(review=reviews)
 
 @app.route("/film/")

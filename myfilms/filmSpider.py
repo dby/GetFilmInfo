@@ -63,7 +63,6 @@ class FilmSpider:
             film["cover"] = a.xpath('@src')[0]
             onShowFilms.append(film)
         
-        print onShowFilms
         return onShowFilms
 
     '''
@@ -143,9 +142,11 @@ class FilmSpider:
 # review_title--影评标题 review_href--影评链接 film_href--电影链接 film_title--电影标题
 # film_cover--电影海报 review_author_name--影评作者 review_author_profile--影评作者界面
 # review_short--影评简述
-    def getBestReview(self, page, type):
+    def getBestReview(self, page, _type):
         onReviews = []
-        url = self.bestUrl + type  + "/?start=" + str(page*10)
+        url = self.bestUrl + str(_type)  + "/?start=" + str(_type*10)
+        #url = "https://movie.douban.com/review/best/"
+        print url
         r = requests.get(url)
         if r.status_code == requests.codes.ok:
             doc = html.document_fromstring(r.text)
@@ -166,10 +167,11 @@ class FilmSpider:
                 spans = ul.xpath('.//li[@class="clst report-link"]')[0].xpath('.//div[@class="review-short"]')[0].xpath('.//span')
                 review_short = ""
                 for i in range(len(spans)):
-                    review_short = review_short + spans[i].text
+                    review_short += str(spans[i].text)
                 review["review_short"] = review_short
                 onReviews.append(review)
             
+            print onReviews
             return onReviews
 
     def getFilmDetailMsg(self, id):
@@ -379,13 +381,13 @@ if __name__ == '__main__':
     #FilmSpider().getSpecifiedFilms("热门", "time", 20, 0)
     #print FilmSpider().getSpecifiedTVs(7)
     #FilmSpider().getRankingList()
-    #FilmSpider().getBestReview(0)
+    FilmSpider().getBestReview(1, "best")
     #FilmSpider().getFilmDetailMsg("http://movie.douban.com/subject/25895276/?from=showing")
     #FilmSpider().getFilmPhotos(25723907)
     #FilmSpider().getEssay(25723907, 0, 20, "new_score")
     #FilmSpider().getReviews(25723907, 5, 0, 20, "")
     #FilmSpider().getDetailReview("http://movie.douban.com/review/7521054/")
 
-    FilmSpider().getRealTimeTickets()
+    #FilmSpider().getRealTimeTickets()
 
 

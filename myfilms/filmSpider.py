@@ -35,6 +35,7 @@ class FilmSpider:
         爬取正在热映的电影
     '''
     def getOnShowFilms(self):
+        headers = {'User-Agent': random.choice(self.user_agents)}
         onShowFilms = []
         r = requests.get(self.baseUrl)
         doc = html.document_fromstring(r.text)
@@ -314,8 +315,11 @@ class FilmSpider:
                 msg["author_name"] = aInfo.attrib["title"]
                 msg["author_img"] = aInfo.xpath('.//img')[0].attrib["src"]
                 msg["essay_vote"] = div.xpath('.//span[@class="votes pr5"]')[0].text
-                time = div.xpath('.//span[@class="comment-info"]')[0].xpath('.//span')[1]
-                msg["essay_time"] = time.text.strip()
+                try:
+                	time = div.xpath('.//span[@class="comment-info"]')[0].xpath('.//span')[1]
+                	msg["essay_time"] = time.text.strip()
+                except:
+                    msg["essay_time"] = "one day"
                 msg["essay_content"] = div.xpath('.//div[@class="comment"]')[0].xpath('.//p')[0].text.strip()
                 essay.append(msg)
 
@@ -377,11 +381,11 @@ if __name__ == '__main__':
     reload(sys)
     sys.setdefaultencoding("utf-8")
 
-    #FilmSpider().getOnShowFilms()
+    print FilmSpider().getOnShowFilms()
     #FilmSpider().getSpecifiedFilms("热门", "time", 20, 0)
     #print FilmSpider().getSpecifiedTVs(7)
     #FilmSpider().getRankingList()
-    FilmSpider().getBestReview(1, "best")
+    #FilmSpider().getBestReview(1, "best")
     #FilmSpider().getFilmDetailMsg("http://movie.douban.com/subject/25895276/?from=showing")
     #FilmSpider().getFilmPhotos(25723907)
     #FilmSpider().getEssay(25723907, 0, 20, "new_score")

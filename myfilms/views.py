@@ -74,7 +74,7 @@ def BoxOfficeGlobal():
 @app.route("/onshowingfilms/")
 def OnShowingFilms():
     films = FilmSpider().getOnShowFilms()
-    return jsonify(onshowingfilms=films)
+    return jsonify(data=films)
 
 @app.route("/choosefilms/")
 def ChooseFilms():
@@ -84,19 +84,19 @@ def ChooseFilms():
         page_limit = request.args.get("page_limit")
         page_start = request.args.get("page_start")
         films = FilmSpider().getSpecifiedFilms(tag, sort, page_limit, page_start)
-        return jsonify(onshowingfilms=films)
+        return jsonify(data=films)
 
 @app.route("/choosetvs/")
 def ChooseTVs():
     if request.method == 'GET':
         type = request.args.get("type")
         tvs = FilmSpider().getSpecifiedTVs(type)
-        return jsonify(onshowingtvs=tvs)
+        return jsonify(data=tvs)
 
 @app.route("/rankinglist/")
 def RankingList():
     rankingList = FilmSpider().getRankingList()
-    return jsonify(rankinglist=rankingList)
+    return jsonify(data=rankingList)
 
 @app.route("/bestreview/")
 def Review():
@@ -105,14 +105,14 @@ def Review():
         #_type = request.args.get("type")
         _type = "best"
         reviews = FilmSpider().getBestReview(page, _type)
-        return jsonify(review=reviews)
+        return jsonify(data=reviews)
 
 @app.route("/film/")
 def FilmDetailMsg():
     if request.method == "GET":
         id = request.args.get("id")
         film = FilmSpider().getFilmDetailMsg(id)
-        return jsonify(film=film)
+        return jsonify(data=film)
 
 @app.route("/essay/")
 def getEssay():
@@ -122,7 +122,7 @@ def getEssay():
         limit = request.args.get("limit")
         sort = request.args.get("sort")
         essay = FilmSpider().getEssay(id, start, limit, sort)
-        return jsonify(essay=essay)
+        return jsonify(data=essay)
 
 @app.route("/review/")
 def getReviews():
@@ -133,4 +133,4 @@ def getReviews():
         sort = request.args.get("sort")
         score = request.args.get("score")
         reviews = FilmSpider().getReviews(id, score, start, limit, sort)
-        return jsonify(reviews=reviews)
+        return jsonify(data=reviews)
